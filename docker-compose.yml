@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  employee.api:
+    image: employee
+    build:
+      context: .
+      dockerfile: src/Employee.API/Dockerfile
+
+  knowledge.api:
+    image: knowledge
+    build:
+      context: .
+      dockerfile: src/Knowledge.API/Dockerfile
+
+  employeesearchbff.api:
+    image: employeesearchbff
+    build:
+      context: .
+      dockerfile: src/EmployeeSearchBff.API/Dockerfile

@@ -2,6 +2,9 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>6e0f03d6-eeaf-4fb3-9bff-8e89ed6d1a74</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..</DockerfileContext>
 	</PropertyGroup>
 
 	<Import Project="..\..\Grpc.Http.Api.props" />
@@ -9,6 +12,7 @@
 	<ItemGroup>
 		<PackageReference Include="Google.Api.CommonProtos" Version="2.5.0" />
 		<PackageReference Include="Grpc.AspNetCore" Version="2.45.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
 	</ItemGroup>
 
 	<ItemGroup>

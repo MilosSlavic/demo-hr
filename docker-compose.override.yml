@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  employee.api:
+    ports:
+      - "90"
+
+  knowledge.api:
+    ports:
+      - "90"
+
+  employeesearchbff.api:
+    ports:
+      - "90"
