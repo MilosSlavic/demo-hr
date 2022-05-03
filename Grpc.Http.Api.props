@@ -1,0 +1,10 @@
+<Project>	
+	<PropertyGroup>
+		<Guide_Proto>$(MSBuildThisFileDirectory)proto\</Guide_Proto>
+		<GoogleApis>$(MSBuildThisFileDirectory)third_party\googleapis\</GoogleApis>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<Protobuf_StandardImportsPath>$(Protobuf_StandardImportsPath);$(GoogleApis);$(Guide_Proto)</Protobuf_StandardImportsPath>
+	</PropertyGroup>
+</Project>

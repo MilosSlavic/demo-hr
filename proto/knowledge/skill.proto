@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "Knowledge.API.Skill";
+
+package Knowledge;
+
+service SkillGrpcService {
+	rpc GetByEmployeeId (GetByEmployeeIdMessage) returns (GetByEmployeeIdReply);
+
+	rpc HasSkills (HasSkillsMessage) returns (HasSkillsReply);
+}
+
+message GetByEmployeeIdMessage{
+}
+
+message GetByEmployeeIdReply{
+}
+
+message HasSkillsMessage{
+}
+
+message HasSkillsReply{
+}

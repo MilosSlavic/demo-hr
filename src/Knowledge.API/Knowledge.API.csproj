@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<Import Project="..\..\Grpc.Http.Api.props" />
+
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="$(Guide_Proto)knowledge\skill.proto" GrpcServices="Server">
+			<Link>Protos\skill.proto</Link>
+		</Protobuf>
+		<Protobuf Include="$(Guide_Proto)knowledge\certificate.proto" GrpcServices="Server">
+			<Link>Protos\certificate.proto</Link>
+		</Protobuf>
+	</ItemGroup>
+</Project>

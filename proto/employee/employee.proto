@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option csharp_namespace = "Employee.API";
+
+package Employee;
+
+service EmployeeGrpcService {
+	rpc GetById(GetByIdMessage) returns (GetByIdReply);
+
+	rpc Create(CreateMessage) returns (CreateReply);
+
+	rpc Update(UpdateMessage) returns (UpdateReply);
+
+	rpc Search(SearchMessage) returns (SearchReply);
+}
+
+message GetByIdMessage{
+}
+
+message GetByIdReply{
+}
+
+message CreateMessage{
+}
+
+message CreateReply{
+}
+
+message UpdateMessage{
+}
+
+message UpdateReply{
+}
+
+message SearchMessage{
+}
+
+message SearchReply{
+}
+
+

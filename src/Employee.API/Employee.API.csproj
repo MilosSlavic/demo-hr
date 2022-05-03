@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<Import Project="..\..\Grpc.Http.Api.props" />
+
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Protobuf Include="$(Guide_Proto)employee\employee.proto" GrpcServices="Server">
+			<Link>Protos\employee.proto</Link>
+		</Protobuf>
+	</ItemGroup>
+</Project>

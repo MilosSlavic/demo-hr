@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<Import Project="..\..\Grpc.Http.Api.props" />
+
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Protobuf Remove="C:\projects\demo-hr\proto\employee_search\search.proto" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="$(Guide_Proto)employee_search\search.proto" GrpcServices="Server">
+			<Link>Protos\search.proto</Link>
+		</Protobuf>
+
+		<Protobuf Include="$(Guide_Proto)employee\employee.proto" GrpcServices="Client">
+			<Link>ProtoDeps\employee.proto</Link>
+		</Protobuf>
+		<Protobuf Include="$(Guide_Proto)knowledge\skill.proto" GrpcServices="Client">
+			<Link>ProtoDeps\skill.proto</Link>
+		</Protobuf>
+		<Protobuf Include="$(Guide_Proto)knowledge\certificate.proto" GrpcServices="Client">
+			<Link>ProtoDeps\certificate.proto</Link>
+		</Protobuf>
+	</ItemGroup>
+</Project>

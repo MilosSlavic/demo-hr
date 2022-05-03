@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "Knowledge.API.Certificate";
+
+package Knowledge;
+
+service CertificateGrpcService {
+	rpc GetByEmployeeId (GetByEmployeeIdMessage) returns (GetByEmployeeIdReply);
+
+	rpc HasCertificate (HasCertificateMessage) returns (HasCertificateReply);
+}
+
+message GetByEmployeeIdMessage{
+}
+
+message GetByEmployeeIdReply{
+}
+
+message HasCertificateMessage{
+}
+
+message HasCertificateReply{
+}
+

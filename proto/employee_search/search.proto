@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "EmployeeSearchBff.API";
+
+package EmployeeSearchBff;
+
+service SearchGrpcService {
+	rpc Search(SearchMessage) returns (SearchReply);
+}
+
+message SearchMessage{
+}
+
+message SearchReply{
+}
