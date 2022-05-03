@@ -4,19 +4,27 @@ option csharp_namespace = "Knowledge.API.Certificate";
 
 package Knowledge;
 
+import "google/api/annotations.proto";
+
 service CertificateGrpcService {
-	rpc GetByEmployeeId (GetByEmployeeIdMessage) returns (GetByEmployeeIdReply);
+	rpc GetByEmployeeId (GetByEmployeeIdMessage) returns (GetByEmployeeIdReply){
+		option (google.api.http) = {
+			get: "/api/Knowledge/Certificate/{EmployeeId}"
+		};
+	};
 
 	rpc HasCertificate (HasCertificateMessage) returns (HasCertificateReply);
 }
 
 message GetByEmployeeIdMessage{
+	int32 EmployeeId = 1;
 }
 
 message GetByEmployeeIdReply{
 }
 
 message HasCertificateMessage{
+	int32 EmployeeId = 1;
 }
 
 message HasCertificateReply{

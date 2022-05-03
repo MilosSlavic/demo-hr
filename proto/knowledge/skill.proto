@@ -4,20 +4,29 @@ option csharp_namespace = "Knowledge.API.Skill";
 
 package Knowledge;
 
+import "google/api/annotations.proto";
+
 service SkillGrpcService {
-	rpc GetByEmployeeId (GetByEmployeeIdMessage) returns (GetByEmployeeIdReply);
+	rpc GetByEmployeeId (GetByEmployeeIdMessage) returns (GetByEmployeeIdReply){
+		option (google.api.http) = {
+			get: "/api/Knowledge/Certificate/{EmployeeId}"
+		};
+	};
 
 	rpc HasSkills (HasSkillsMessage) returns (HasSkillsReply);
 }
 
 message GetByEmployeeIdMessage{
+	int32 EmployeeId = 1;
 }
 
 message GetByEmployeeIdReply{
 }
 
 message HasSkillsMessage{
+	int32 EmployeeId = 1;
 }
 
 message HasSkillsReply{
+	bool Yes = 1;
 }

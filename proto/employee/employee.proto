@@ -4,17 +4,34 @@ option csharp_namespace = "Employee.API";
 
 package Employee;
 
+import "google/api/annotations.proto";
+
 service EmployeeGrpcService {
-	rpc GetById(GetByIdMessage) returns (GetByIdReply);
+	rpc GetById(GetByIdMessage) returns (GetByIdReply){
+		option (google.api.http) = {
+			get: "/api/Employee/Employee/{Id}"
+		};
+	};
 
-	rpc Create(CreateMessage) returns (CreateReply);
+	rpc Create(CreateMessage) returns (CreateReply){
+		option (google.api.http) = {
+			post: "/api/Employee/Employee"
+			body: "*"
+		};
+	};
 
-	rpc Update(UpdateMessage) returns (UpdateReply);
+	rpc Update(UpdateMessage) returns (UpdateReply){
+		option (google.api.http) = {
+			put: "/api/Employee/Employee"
+			body: "*"
+		};
+	};
 
 	rpc Search(SearchMessage) returns (SearchReply);
 }
 
 message GetByIdMessage{
+	int32 Id = 1;
 }
 
 message GetByIdReply{
@@ -24,12 +41,14 @@ message CreateMessage{
 }
 
 message CreateReply{
+	int32 Id = 1;
 }
 
 message UpdateMessage{
 }
 
 message UpdateReply{
+	bool Success = 1;
 }
 
 message SearchMessage{

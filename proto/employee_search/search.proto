@@ -4,8 +4,15 @@ option csharp_namespace = "EmployeeSearchBff.API";
 
 package EmployeeSearchBff;
 
+import "google/api/annotations.proto";
+
 service SearchGrpcService {
-	rpc Search(SearchMessage) returns (SearchReply);
+	rpc Search(SearchMessage) returns (SearchReply){
+		option (google.api.http) = {
+			post: "/api/EmployeeSearchBff/Search"
+			body: "*"
+		};
+	};
 }
 
 message SearchMessage{
