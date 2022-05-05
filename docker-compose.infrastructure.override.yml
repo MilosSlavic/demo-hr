@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  proto-gen-descriptor:
+    volumes:
+      - "./proto:/proto"
+      - "./build/proto-descriptor:/descriptor"
+
+  front-proxy:
+    volumes:
+      - "./build/proto-descriptor:/descriptor"
+      - "./tools/apigw/frontproxy.yaml:/etc/envoy.yaml"
+    ports:
+      - "10000:10000"
+      - "10001:10001"

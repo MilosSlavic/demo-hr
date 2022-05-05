@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "Knowledge.API.Certificate";
 
-package Knowledge;
+package Knowledge.Certificate;
 
 import "google/api/annotations.proto";
 

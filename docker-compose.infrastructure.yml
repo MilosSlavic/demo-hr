@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  proto-gen-descriptor:
+    image: proto-gen-descriptor
+    build:
+      context: .
+      dockerfile: tools/apigw/Dockerfile
+      target: proto-gen-descriptor
+
+  front-proxy:
+    image: front-proxy
+    build:
+      context: .
+      dockerfile: tools/apigw/Dockerfile
+      target: front-proxy
+    depends_on:
+      proto-gen-descriptor:
+        condition: service_completed_successfully
+    networks:
+      - demogrpchr
+
+networks:
+  demogrpchr:
+    name: demogrpchr
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.255.255.0/24"

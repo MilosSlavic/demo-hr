@@ -10,6 +10,10 @@
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
     <None Include="docker-compose.yml" />
+	<None Include="docker-compose.infrastructure.override.yml">
+      <DependentUpon>docker-compose.infrastructure.yml</DependentUpon>
+    </None>
+    <None Include="docker-compose.infrastructure.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>
 </Project>
