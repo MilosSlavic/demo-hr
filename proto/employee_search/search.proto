@@ -4,6 +4,7 @@ option csharp_namespace = "EmployeeSearchBff.API";
 
 package EmployeeSearchBff;
 
+import "google/protobuf/wrappers.proto";
 import "google/api/annotations.proto";
 
 service SearchGrpcService {
@@ -16,7 +17,18 @@ service SearchGrpcService {
 }
 
 message SearchMessage{
+	string SearchTerm = 1;
 }
 
 message SearchReply{
+	repeated EmployeeModel Items = 1;
+}
+
+message EmployeeModel{
+	int32 Id = 1;
+	string FirstName = 2;
+	string LastName = 3;
+	string Email = 4;
+	bool HasSkills = 5;
+	bool HasCertificates = 6;
 }

@@ -4,6 +4,7 @@ option csharp_namespace = "Employee.API";
 
 package Employee;
 
+import "google/protobuf/wrappers.proto";
 import "google/api/annotations.proto";
 
 service EmployeeGrpcService {
@@ -30,14 +31,40 @@ service EmployeeGrpcService {
 	rpc Search(SearchMessage) returns (SearchReply);
 }
 
+enum EmployeeTitle{
+	EmployeeTitle_Invalid = 0;
+	EmployeeTitle_Mr = 1;
+	EmployeeTitle_Mrs = 2;
+	EmployeeTitle_Miss = 3;
+}
+
 message GetByIdMessage{
 	int32 Id = 1;
 }
 
 message GetByIdReply{
+	string FirstName = 1;
+	string LastName = 2;
+	string City = 3;
+	string Country = 4;
+	string DateOfBirth = 5;
+	string Email = 6;
+	string PersonalIdentificationNumber = 7;
+	google.protobuf.StringValue State = 8;
+	EmployeeTitle Title = 9;
+	int32 Id = 10;
 }
 
 message CreateMessage{
+	string FirstName = 1;
+	string LastName = 2;
+	string City = 3;
+	string Country = 4;
+	string DateOfBirth = 5;
+	string Email = 6;
+	string PersonalIdentificationNumber = 7;
+	google.protobuf.StringValue State = 8;
+	EmployeeTitle Title = 9;
 }
 
 message CreateReply{
@@ -45,6 +72,16 @@ message CreateReply{
 }
 
 message UpdateMessage{
+	string FirstName = 1;
+	string LastName = 2;
+	string City = 3;
+	string Country = 4;
+	string DateOfBirth = 5;
+	string Email = 6;
+	string PersonalIdentificationNumber = 7;
+	google.protobuf.StringValue State = 8;
+	EmployeeTitle Title = 9;
+	int32 Id = 10;
 }
 
 message UpdateReply{
@@ -52,9 +89,17 @@ message UpdateReply{
 }
 
 message SearchMessage{
+	string SearchTerm = 1;
 }
 
 message SearchReply{
+	repeated EmployeeSearchModel Items = 1;
 }
 
+message EmployeeSearchModel{
+	int32 Id = 1;
+	string FirstName = 2;
+	string LastName = 3;
+	string Email = 4;
+}
 
