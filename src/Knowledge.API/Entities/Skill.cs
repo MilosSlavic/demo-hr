@@ -8,6 +8,6 @@
 
         public string Name { get; set; }
 
-        public int Grade { get; set; }
+        public byte Grade { get; set; }
     }
 }

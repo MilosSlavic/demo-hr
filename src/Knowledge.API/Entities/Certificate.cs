@@ -11,6 +11,6 @@
         /// <summary>
         /// Percent of correct answers.
         /// </summary>
-        public int Completness { get; set; }
+        public int? Completness { get; set; }
     }
 }
