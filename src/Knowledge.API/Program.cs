@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddGrpc();
+builder.Services.AddGrpcReflection();
 builder.Services.AddDbContext<KnowledgeDbContext>((ctx, opt) =>
 {
     var configuration = ctx.GetRequiredService<IConfiguration>();
@@ -16,6 +17,10 @@ var app = builder.Build();
 
 app.MapGrpcService<CertificateGrpcServiceImpl>();
 app.MapGrpcService<SkillGrpcServiceImpl>();
+if (app.Environment.IsDevelopment())
+{
+    app.MapGrpcReflectionService();
+}
 
 using (var scope = app.Services.CreateScope())
 {

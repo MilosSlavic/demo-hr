@@ -41,6 +41,11 @@ namespace Employee.API.Grpc
             var employee = await _dbContext.Employees.SingleOrDefaultAsync(
                 x => x.Id == request.Id);
 
+            if (employee is null)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, "Not found"));
+            }
+
             return new GetByIdReply
             {
                 Id = employee.Id,

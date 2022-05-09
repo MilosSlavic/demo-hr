@@ -9,7 +9,13 @@ import "google/api/annotations.proto";
 service SkillGrpcService {
 	rpc GetByEmployeeId (GetByEmployeeIdMessage) returns (GetByEmployeeIdReply){
 		option (google.api.http) = {
-			get: "/api/Knowledge/Certificate/{EmployeeId}"
+			get: "/api/Knowledge/Skill/{EmployeeId}"
+		};
+	};
+
+	rpc Create (CreateMessage) returns (CreateReply){
+		option (google.api.http) = {
+			post: "/api/Knowledge/Skill"
 		};
 	};
 
@@ -20,7 +26,25 @@ message GetByEmployeeIdMessage{
 	int32 EmployeeId = 1;
 }
 
+message SkillModel{
+	int32 Id = 1;
+	int32 EmployeeId = 2;
+	string Name = 3;
+	int32 Grade = 4;
+}
+
 message GetByEmployeeIdReply{
+	repeated SkillModel Items = 1;
+}
+
+message CreateMessage{
+	int32 EmployeeId = 1;
+	string Name = 2;
+	int32 Grade = 3;
+}
+
+message CreateReply{
+	int32 Id = 1;
 }
 
 message HasSkillsMessage{

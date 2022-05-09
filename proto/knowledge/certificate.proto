@@ -4,12 +4,20 @@ option csharp_namespace = "Knowledge.API.Certificate";
 
 package Knowledge.Certificate;
 
+import "google/protobuf/wrappers.proto";
 import "google/api/annotations.proto";
 
 service CertificateGrpcService {
 	rpc GetByEmployeeId (GetByEmployeeIdMessage) returns (GetByEmployeeIdReply){
 		option (google.api.http) = {
 			get: "/api/Knowledge/Certificate/{EmployeeId}"
+		};
+	};
+
+	rpc Create (CreateMessage) returns (CreateReply){
+		option (google.api.http) = {
+			post: "/api/Knowledge/Certificate"
+			body: "*"
 		};
 	};
 
@@ -20,7 +28,25 @@ message GetByEmployeeIdMessage{
 	int32 EmployeeId = 1;
 }
 
+message CertificateModel{
+	int32 Id = 1;
+	int32 EmployeeId = 2;
+	string Name = 3;
+	google.protobuf.Int32Value Completness = 4;
+}
+
 message GetByEmployeeIdReply{
+	repeated CertificateModel Items = 1;
+}
+
+message CreateMessage{
+	string Name = 1;
+	int32 EmployeeId = 2;
+	google.protobuf.Int32Value Completness = 3;
+}
+
+message CreateReply{
+	int32 Id = 1;
 }
 
 message HasCertificateMessage{
@@ -28,5 +54,6 @@ message HasCertificateMessage{
 }
 
 message HasCertificateReply{
+	bool Yes = 1;
 }
 

@@ -6,8 +6,6 @@ services:
     build:
       context: .
       dockerfile: src/Employee.API/Dockerfile
-    env_file:
-      - ./.env
     networks:
       - demogrpchr
 

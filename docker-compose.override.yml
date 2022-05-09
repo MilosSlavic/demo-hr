@@ -2,13 +2,26 @@ version: '3.4'
 
 services:
   employee.api:
+    env_file:
+      - ./.env
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=mssql;Database=Employee;User Id=sa;Password=P@ssw0rd
     ports:
       - "90"
 
   knowledge.api:
+    env_file:
+      - ./.env
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=mssql;Database=Knowledge;User Id=sa;Password=P@ssw0rd
     ports:
       - "90"
 
   employeesearchbff.api:
+    env_file:
+      - ./.env
+    environment:
+      - EMPLOYEE_GRPC_API=http://employee.api:90/
+      - KNOWLEDGE_GRPC_API=http://knowledge.api:90/
     ports:
       - "90"

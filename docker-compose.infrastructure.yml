@@ -20,6 +20,12 @@ services:
     networks:
       - demogrpchr
 
+  mssql:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    networks:
+      - demogrpchr
+
 networks:
   demogrpchr:
     name: demogrpchr

@@ -13,3 +13,14 @@ services:
     ports:
       - "10000:10000"
       - "10001:10001"
+
+  mssql:
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssw0rd
+    volumes:
+      - "c:/data/demogrpchr/mssql/data:/var/opt/mssql/data"
+      - "c:/data/demogrpchr/mssql/log:/var/opt/mssql/log"
+      - "c:/data/demogrpchr/mssql/secrets:/var/opt/mssql/secrets"
