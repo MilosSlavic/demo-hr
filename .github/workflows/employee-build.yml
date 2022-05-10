@@ -12,11 +12,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: milosslavic/demo-hr/.github/workflows/main.yml@master
-        with:
-          majorVersion: 1
-          buildNumber: ${{ env.GITHUB_RUN_NUMBER }}
-          dockerFilePath: src/Employee/Dockerfile
-          imageName: employee
+    uses: milosslavic/demo-hr/.github/workflows/main.yml@master
+    with:
+      majorVersion: 1
+      buildNumber: ${{ env.GITHUB_RUN_NUMBER }}
+      dockerFilePath: src/Employee/Dockerfile
+      imageName: employee
