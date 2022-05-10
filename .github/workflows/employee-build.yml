@@ -16,7 +16,7 @@ jobs:
     with:
       majorVersion: 1
       buildNumber: ${{ github.run_number }}
-      dockerFilePath: src/Employee/Dockerfile
+      dockerFilePath: src/Employee.API/Dockerfile
       imageName: employee
     secrets:
       ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
