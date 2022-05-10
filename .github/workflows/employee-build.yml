@@ -15,6 +15,6 @@ jobs:
     uses: milosslavic/demo-hr/.github/workflows/main.yml@master
     with:
       majorVersion: 1
-      buildNumber: ${{ env.GITHUB_RUN_NUMBER }}
+      buildNumber: ${{ github.run_number }}
       dockerFilePath: src/Employee/Dockerfile
       imageName: employee
