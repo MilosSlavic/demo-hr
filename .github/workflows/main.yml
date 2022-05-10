@@ -8,7 +8,7 @@ on:
        type: number
      buildNumber: #GITHUB_RUN_NUMBER
        required: true
-       type: number
+       type: string
      dockerFilePath:
        required: true
        type: string
