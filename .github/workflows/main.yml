@@ -45,6 +45,6 @@ jobs:
         name: Build and push
         with:
           file: ${{ inputs.dockerFilePath }}
-          tags: ${{ format('{0}:{1}', env.IMAGE_NAME, env.FULL_VER) }}, ${{ format('{0}:latest', env.IMAGE_NAME) }}
+          tags: ${{ format('{0}:{1}', $IMAGE_NAME, $FULL_VER) }}, ${{ format('{0}:latest', env.IMAGE_NAME) }}
           push: true
           target: final
