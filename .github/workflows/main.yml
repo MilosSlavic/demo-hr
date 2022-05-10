@@ -16,8 +16,6 @@ on:
        required: true
        type: string
    secrets:
-     ACR_NAME:
-       required: true
      ACR_USERNAME:
        required: true
      ACR_PASSWORD:
@@ -34,7 +32,7 @@ jobs:
         run: echo $ACR_URL
       - name: Craft image name
         env:
-          IMAGE_NAME: ${{ env.ACR_URL }}/${{ inputs.imageName }}
+          IMAGE_NAME: ${{ format('{0}/{1}', env.ACR_URL, inputs.imageName) }}
         run: echo $IMAGE_NAME
       - name: Craft version
         env:
