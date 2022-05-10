@@ -31,12 +31,15 @@ jobs:
       - name: Acr url
         env:
           ACR_URL: ${{ secrets.ACR_NAME }}.azurecr.io
+        run: echo $ACR_URL
       - name: Craft image name
         env:
           IMAGE_NAME: ${{ env.ACR_URL }}/${{ inputs.imageName}}
+        run: echo $ACR_URL
       - name: Craft version
         env:
           FULL_VER: ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}
+        run: echo $ACR_URL
       - uses: docker/login-actio@v2
         name: Docker login
         with:
