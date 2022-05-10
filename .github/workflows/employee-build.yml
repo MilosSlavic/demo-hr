@@ -18,3 +18,7 @@ jobs:
       buildNumber: ${{ github.run_number }}
       dockerFilePath: src/Employee/Dockerfile
       imageName: employee
+    secrets:
+      ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+      ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+      ACR_NAME: ${{ secrets.ACR_NAME }}
