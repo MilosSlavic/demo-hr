@@ -1,0 +1,52 @@
+name: Base build workflow
+
+on:
+ workflow_call:
+   inputs:
+     majorVersion:
+       required: true
+       type: number
+     buildNumber: #GITHUB_RUN_NUMBER
+       required: true
+       type: number
+     dockerFilePath:
+       required: true
+       type: string
+     imageName:
+       required: true
+       type: string
+   secrets:
+     ACR_NAME:
+       required: true
+     ACR_USERNAME:
+       required: true
+     ACR_PASSWORD:
+       required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Acr url
+        env:
+          ACR_URL: ${{ secrets.ACR_NAME }}.azurecr.io
+      - name: Craft image name
+        env:
+          IMAGE_NAME: ${{ env.ACR_URL }}/${{ inputs.imageName}}
+      - name: Craft version
+        env:
+          FULL_VER: ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}
+      - uses: docker/login-actio@v2
+        name: Docker login
+        with:
+          registry: ${{ env.ACR_URL}}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - uses: docker/build-push-action@v3
+        name: Build and push
+        with:
+          file: ${{ inputs.dockerFilePath }}
+          tags: ${{ format('{0}:{1}', env.IMAGE_NAME, env.FULL_VER)}}, ${{format('{0}:latest', env.IMAGE_NAME}}
+          push: true
+          target: final
