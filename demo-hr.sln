@@ -20,6 +20,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62BC5ADE-03F
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0BD79F4A-C8E3-48E8-8503-0901B702315E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{F50A42A1-56E7-49AC-AF26-56A93D2A95FA}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\employee-build.yml = .github\workflows\employee-build.yml
+		.github\workflows\employeesearchbff-build.yml = .github\workflows\employeesearchbff-build.yml
+		.github\workflows\knowledge-build.yml = .github\workflows\knowledge-build.yml
+		.github\workflows\main.yml = .github\workflows\main.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
