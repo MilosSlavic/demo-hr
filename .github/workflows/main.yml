@@ -1,0 +1,49 @@
+name: Base build workflow
+
+on:
+ workflow_call:
+   inputs:
+     majorVersion:
+       required: true
+       type: number
+     buildNumber: #GITHUB_RUN_NUMBER
+       required: true
+       type: string
+     dockerFilePath:
+       required: true
+       type: string
+     imageName:
+       required: true
+       type: string
+   secrets:
+     ACR_USERNAME:
+       required: true
+     ACR_PASSWORD:
+       required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: googleapis/googleapis
+          path: third_party/
+      - uses: docker/login-action@v2
+        name: Docker login
+        with:
+          registry: codetalksacr.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+          logout: true
+      - uses: docker/build-push-action@v3
+        name: Build and push
+        env:
+          IMAGE_NAME: codetalksacr.azurecr.io/${{ inputs.imageName }}
+          FULL_VER: ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}
+        with:
+          file: ${{ inputs.dockerFilePath }}
+          tags: ${{ format('{0}:{1}', env.IMAGE_NAME, env.FULL_VER) }}, ${{ format('{0}:latest', env.IMAGE_NAME) }}
+          push: true
+          target: final

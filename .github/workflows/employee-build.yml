@@ -1,0 +1,23 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: milosslavic/demo-hr/.github/workflows/main.yml@master
+    with:
+      majorVersion: 1
+      buildNumber: ${{ github.run_number }}
+      dockerFilePath: src/Employee.API/Dockerfile
+      imageName: employee
+    secrets:
+      ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+      ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
