@@ -18,3 +18,4 @@ jobs:
     secrets:
       ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
       ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+      AZURE_STORAGE_CONNECTION_STRING: ${{secrets.STORAGE_ACCOUNT_CONNECTION}}
