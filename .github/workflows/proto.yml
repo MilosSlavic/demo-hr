@@ -15,4 +15,4 @@ jobs:
       - uses: docker://mslavic/proto-gen-descriptor:latest
         name: Build proto descriptor
         with:
-          args: "sh -c './tools/protobuild/script.sh ./proto/ employee 1.1 ./'"
+          args: "./tools/protobuild/script.sh ./proto employee 1.1 ./"
