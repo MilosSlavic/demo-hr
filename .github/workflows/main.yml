@@ -63,4 +63,14 @@ jobs:
         with:
           inlineScript: |
             az storage file upload --share-name protoshare --source ./descriptor/${{ inputs.imageName }}/${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb --path ${{ inputs.imageName }}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb
+      - uses: Azure/setup-helm@v2.0
+        name: Install helm
+      - shell: bash
+        name: Package helm chart
+        run: |
+          helm package ./charts/${{inputs.imageName}} --app-version {{ inputs.majorVersion }}.${{ inputs.buildNumber }} --version {{ inputs.majorVersion }}.${{ inputs.buildNumber }}
+      - shell: bash
+        name: List Files
+        run: "ls -laF"
+        
 
