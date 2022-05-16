@@ -52,5 +52,3 @@ echo $descriptor_path
     --include_source_info \
     --descriptor_set_out=$descriptor_path \
     $proto_dir/$svc_name/*.proto
-
-$proto_dir/$svc_name/*.proto
