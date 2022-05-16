@@ -18,6 +18,8 @@ jobs:
           args: "./tools/protobuild/script.sh ./proto employee 1.1 ./"
       - uses: Azure/cli@v1.0.6
         name: Upload file to Azure file share
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: ${{secrets.STORAGE_ACCOUNT_CONNECTION}}
         with:
           inlineScript: |
-            az storage file upload --share-name protoshare --connection-string ${{env.AZURE_STORAGE_CONNECTION_STRING}} --source ./descriptor/employee/1.1.pb
+            az storage file upload --share-name protoshare --source ./descriptor/employee/1.1.pb
