@@ -69,7 +69,7 @@ jobs:
         name: Package helm chart
         run: |
           helm package ./charts/${{inputs.imageName}} --app-version ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} --version ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}
-      - uses: Azure/cli@1.0.6
+      - uses: Azure/cli@v1.0.6
         name: Publish helm chart to ACR
         with:
           inlineScript: |
