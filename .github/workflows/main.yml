@@ -68,7 +68,7 @@ jobs:
       - shell: bash
         name: Package helm chart
         run: |
-          helm package ./charts/${{inputs.imageName}} --app-version {{ inputs.majorVersion }}.${{ inputs.buildNumber }} --version {{ inputs.majorVersion }}.${{ inputs.buildNumber }}
+          helm package ./charts/${{inputs.imageName}} --app-version ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} --version ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}
       - shell: bash
         name: List Files
         run: "ls -laF"
