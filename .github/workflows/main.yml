@@ -60,5 +60,5 @@ jobs:
           AZURE_STORAGE_CONNECTION_STRING: ${{secrets.STORAGE_ACCOUNT_CONNECTION}}
         with:
           inlineScript: |
-            az storage file upload --share-name protoshare --source ./descriptor/${{ inputs.imageName }}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb
+            az storage file upload --share-name protoshare --source ./descriptor/${{ inputs.imageName }}/${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb --path ${{ inputs.imageName }}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb
 
