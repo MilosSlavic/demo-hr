@@ -54,7 +54,11 @@ jobs:
         name: Build proto descriptor
         with:
           args: "./tools/protobuild/script.sh ./proto ${{ inputs.imageName }} ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} ./'"
-      - uses: Azure/cli@v1
+      - uses: Azure/cli@v1.0.6
         name: Upload file to Azure file share
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: ${{secrets.STORAGE_ACCOUNT_CONNECTION}}
         with:
-          inlineScript: az storage file upload --share-name protoshare --source ./descriptor/${{ inputs.imageName }}/${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb --connection-string ${{ secrets.STORAGE_ACCOUNT_CONNECTION }}
+          inlineScript: |
+            az storage file upload --share-name protoshare --source ./descriptor/${{ inputs.imageName }}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb
+
