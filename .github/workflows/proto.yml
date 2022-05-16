@@ -9,8 +9,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Set Permissions
+        shell: bash
+        run: "chmod +x ./tools/protobuild/script.sh"
       - uses: docker://mslavic/proto-gen-descriptor:latest
         name: Build proto descriptor
         with:
           #args: "sh -c './tools/protobuild/script.sh ./proto/ ${{ inputs.imageName }} ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} ./'"
-          args: "cat ./tools/protobuild/script.sh"
+          args: "./tools/protobuild/script.sh"
