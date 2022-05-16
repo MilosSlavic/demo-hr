@@ -2,7 +2,7 @@
 
 usage()
 {
-    echo "script.sh proto_dir svc_name [workdir]"
+    echo "script.sh proto_dir svc_name version [workdir]"
 }
 
 if [ $# -eq 0 ]; then
