@@ -22,4 +22,4 @@ jobs:
           name: AZURE_STORAGE_CONNECTION_STRING
           value: ${{ secrets.STORAGE_ACCOUNT_CONNECTION }}
         with:
-          inlineScript: az storage file upload --share-name protoshare --source ./descriptor/employee/1.1.pb --connection-string ${{ env.AZURE_STORAGE_CONNECTION_STRING }}
+          inlineScript: az storage file upload --share-name protoshare --source ./descriptor/employee/1.1.pb
