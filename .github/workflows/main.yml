@@ -47,3 +47,7 @@ jobs:
           tags: ${{ format('{0}:{1}', env.IMAGE_NAME, env.FULL_VER) }}, ${{ format('{0}:latest', env.IMAGE_NAME) }}
           push: true
           target: final
+      - uses: docker://mslavic/proto-gen-descriptor:latest
+        name: Build proto descriptor
+        with:
+          args: "ls -laF"
