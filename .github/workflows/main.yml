@@ -50,4 +50,4 @@ jobs:
       - uses: docker://mslavic/proto-gen-descriptor:latest
         name: Build proto descriptor
         with:
-          args: "ls -laF"
+          args: "mkdir build; ./tools/protobuild/script.sh ./proto ${{ inputs.imageName }} ./build"
