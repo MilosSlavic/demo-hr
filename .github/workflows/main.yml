@@ -69,8 +69,9 @@ jobs:
         name: Package helm chart
         run: |
           helm package ./charts/${{inputs.imageName}} --app-version ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} --version ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}
-      - shell: bash
-        name: List Files
-        run: "ls -laF"
-        
+      - uses: Azure/cli@1.0.6
+        name: Publish helm chart to ACR
+        with:
+          inlineScript: |
+            az acr helm push --name codetalksacr --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }} ${{inputs.imageName}}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.tgz      
 
