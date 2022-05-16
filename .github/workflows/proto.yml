@@ -20,6 +20,6 @@ jobs:
         name: Upload file to Azure file share
         env:
           name: AZURE_STORAGE_CONNECTION_STRING
-          value: ${{ secrets.STORAGE_ACCOUNT_CONNECTION }}
+          value: "${{ secrets.STORAGE_ACCOUNT_CONNECTION }}"
         with:
           inlineScript: az storage file upload --share-name protoshare --source ./descriptor/employee/1.1.pb
