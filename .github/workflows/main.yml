@@ -55,7 +55,7 @@ jobs:
       - uses: docker://mslavic/proto-gen-descriptor:latest
         name: Build proto descriptor
         with:
-          args: "./tools/protobuild/script.sh ./proto ${{ inputs.imageName }} ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} ./'"
+          args: "./tools/protobuild/script.sh ./proto ${{ inputs.imageName }} ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}"
       - uses: Azure/cli@v1.0.6
         name: Upload file to Azure file share
         env:
