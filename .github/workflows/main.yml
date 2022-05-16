@@ -47,8 +47,10 @@ jobs:
           tags: ${{ format('{0}:{1}', env.IMAGE_NAME, env.FULL_VER) }}, ${{ format('{0}:latest', env.IMAGE_NAME) }}
           push: true
           target: final
+      - name: Set permissions
+        shell: bash
+        run: chmod +x ./tools/protobuild/script.sh
       - uses: docker://mslavic/proto-gen-descriptor:latest
         name: Build proto descriptor
         with:
-          #args: "sh -c './tools/protobuild/script.sh ./proto/ ${{ inputs.imageName }} ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} ./'"
-          args: "bash -c 'cat ./tools/protobuild/script.sh;echo; ls -l ./tools/protobuild/script.sh'"
+          args: "./tools/protobuild/script.sh ./proto ${{ inputs.imageName }} ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} ./'"
