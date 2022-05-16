@@ -51,4 +51,4 @@ jobs:
         name: Build proto descriptor
         with:
           #args: "sh -c './tools/protobuild/script.sh ./proto/ ${{ inputs.imageName }} ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} ./'"
-          args: "cat ./tools/protobuild/script.sh;echo; ls -l ./tools/protobuild/script.sh"
+          args: "sh -c 'cat ./tools/protobuild/script.sh;echo; ls -l ./tools/protobuild/script.sh'"
