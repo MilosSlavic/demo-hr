@@ -75,6 +75,6 @@ jobs:
         name: Publish helm chart to ACR
         with:
           inlineScript: |
-            az acr helm push --name codetalksacr --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }} ${{inputs.imageName}}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.tgz
+            az acr helm push --name codetalksacr --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }} ${{inputs.imageName}}-${{ inputs.majorVersion }}.0.${{ inputs.buildNumber }}.tgz
 
 
