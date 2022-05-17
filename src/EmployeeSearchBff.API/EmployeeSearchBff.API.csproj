@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Protobuf Include="$(Guide_Proto)employeesearchbff \search.proto" GrpcServices="Server">
+		<Protobuf Include="$(Guide_Proto)employeesearchbff\search.proto" GrpcServices="Server">
 			<Link>Protos\search.proto</Link>
 		</Protobuf>
 
