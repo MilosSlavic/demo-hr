@@ -43,7 +43,7 @@ jobs:
         name: Build and push
         env:
           IMAGE_NAME: codetalksacr.azurecr.io/${{ inputs.imageName }}
-          FULL_VER: ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}
+          FULL_VER: ${{ inputs.majorVersion }}.0.${{ inputs.buildNumber }}
         with:
           file: ${{ inputs.dockerFilePath }}
           tags: ${{ format('{0}:{1}', env.IMAGE_NAME, env.FULL_VER) }}, ${{ format('{0}:latest', env.IMAGE_NAME) }}
@@ -55,22 +55,26 @@ jobs:
       - uses: docker://mslavic/proto-gen-descriptor:latest
         name: Build proto descriptor
         with:
-          args: "./tools/protobuild/script.sh ./proto ${{ inputs.imageName }} ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}"
+          args: "./tools/protobuild/script.sh ./proto ${{ inputs.imageName }} ${{ inputs.majorVersion }}.0.${{ inputs.buildNumber }}"
       - uses: Azure/cli@v1.0.6
         name: Upload file to Azure file share
         env:
           AZURE_STORAGE_CONNECTION_STRING: ${{secrets.AZURE_STORAGE_CONNECTION_STRING}}
         with:
           inlineScript: |
-            az storage file upload --share-name protoshare --source ./descriptor/${{ inputs.imageName }}/${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb --path ${{ inputs.imageName }}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.pb
+            az storage file upload --share-name protoshare --source ./descriptor/${{ inputs.imageName }}/${{ inputs.majorVersion }}.0.${{ inputs.buildNumber }}.pb --path ${{ inputs.imageName }}-${{ inputs.majorVersion }}.0.${{ inputs.buildNumber }}.pb
       - uses: Azure/setup-helm@v2.0
         name: Install helm
       - shell: bash
-        name: Package helm chart
+        name: Package and publish the helm chart to ACR
         run: |
-          helm package ./charts/${{inputs.imageName}} --app-version {{ inputs.majorVersion }}.${{ inputs.buildNumber }} --version {{ inputs.majorVersion }}.${{ inputs.buildNumber }}
-      - shell: bash
-        name: List Files
-        run: "ls -laF"
-        
+          helm package ./charts/${{inputs.imageName}} --app-version ${{ inputs.majorVersion }}.0.${{ inputs.buildNumber }} --version ${{ inputs.majorVersion }}.0.${{ inputs.buildNumber }}
+          # helm registry login codetalksacr.azurecr.io --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+          # helm push ${{inputs.imageName}}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.tgz oci://codetalksacr.azurecr.io/helm
+      - uses: Azure/cli@v1.0.6
+        name: Publish helm chart to ACR
+        with:
+          inlineScript: |
+            az acr helm push --name codetalksacr --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }} ${{inputs.imageName}}-${{ inputs.majorVersion }}.0.${{ inputs.buildNumber }}.tgz
+
 
