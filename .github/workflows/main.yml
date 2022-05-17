@@ -71,7 +71,7 @@ jobs:
           helm package ./charts/${{inputs.imageName}} --app-version ${{ inputs.majorVersion }}.${{ inputs.buildNumber }} --version ${{ inputs.majorVersion }}.${{ inputs.buildNumber }}
           # helm registry login codetalksacr.azurecr.io --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
           # helm push ${{inputs.imageName}}-${{ inputs.majorVersion }}.${{ inputs.buildNumber }}.tgz oci://codetalksacr.azurecr.io/helm
-      - uses: Azure/cli@1.0.6
+      - uses: Azure/cli@v1.0.6
         name: Publish helm chart to ACR
         with:
           inlineScript: |
