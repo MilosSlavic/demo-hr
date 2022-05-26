@@ -4,9 +4,9 @@ name: EmployeeSearchBff build
 
 on:
   push:
-    tags: [ employeesearchbff ]
+    branches: [ employeesearchbff ]
   pull_request:
-    tags: [ employeesearchbff ]
+    branches: [ employeesearchbff ]
 
   workflow_dispatch:
 
