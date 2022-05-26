@@ -4,9 +4,9 @@ name: Knowledge build
 
 on:
   push:
-    tags: [ knowledge ]
+    branches: [ knowledge ]
   pull_request:
-    tags: [ knowledge ]
+    branches: [ knowledge ]
 
   workflow_dispatch:
 
