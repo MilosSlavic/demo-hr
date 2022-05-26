@@ -1,9 +1,9 @@
 name: Employee build
 on:
   push:
-    tags: [ employee ]
+    branches: [ employee ]
   pull_request:
-    tags: [ employee ]
+    branches: [ employee ]
 
   workflow_dispatch:
 
