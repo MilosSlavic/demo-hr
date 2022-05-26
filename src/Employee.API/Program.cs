@@ -1,6 +1,7 @@
 using Employee.API;
 using Employee.API.Grpc;
 using Microsoft.EntityFrameworkCore;
+using Demo.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
