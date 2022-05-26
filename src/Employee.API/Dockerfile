@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Employee.API/Employee.API.csproj", "src/Employee.API/"]
+COPY ["src/Demo.Common/Demo.Common.csproj", "src/Demo.Common/"]
 RUN dotnet restore "src/Employee.API/Employee.API.csproj"
 COPY . .
 WORKDIR "/src/src/Employee.API"
