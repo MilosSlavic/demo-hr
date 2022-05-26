@@ -12,6 +12,7 @@ builder.Services.AddDbContext<EmployeeDbContext>((ctx, opt) =>
     var connStr = configuration.GetConnectionString("DefaultConnection");
     opt.UseSqlServer(connStr);
 });
+builder.Host.UseCustomLogging();
 
 var app = builder.Build();
 
