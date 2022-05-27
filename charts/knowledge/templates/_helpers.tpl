@@ -48,6 +48,7 @@ Selector labels
 {{- define "knowledge.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "knowledge.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app: {{ include "knowledge.fullname" . }}
 {{- end }}
 
 {{/*

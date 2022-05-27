@@ -48,6 +48,7 @@ Selector labels
 {{- define "employeesearchbff.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "employeesearchbff.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app: {{ include "employeesearchbff.fullname" . }}
 {{- end }}
 
 {{/*
