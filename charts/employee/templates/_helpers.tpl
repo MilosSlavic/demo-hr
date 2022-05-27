@@ -48,6 +48,7 @@ Selector labels
 {{- define "employee.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "employee.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app: {{ include "employee.fullname" . }}
 {{- end }}
 
 {{/*
